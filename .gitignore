@@ -1,129 +1,55 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+print("XOR function using Mc-Culloch Pitts neuron")
+print("Enter 4 binary inputs.");
+x1inputs=[]
+x2inputs=[]
+c=input("Press 1 to enter inputs or Enter to use default inputs.")
+if(c=="1"):
+ for i in range(0,4):
+     x1=int(input("Enter x1 : "))
+     x1inputs.append(x1)
+     x2=int(input("Enter x2 : "))
+     x2inputs.append(x2)
+else:
+ x1inputs=[1,1,0,0]
+ x2inputs=[1,0,1,0]
+print("Calculating z1 = x1 x2'")
+print("Considering one weight as excitatory and other as inhibitory.");
+w1 = [1,1,1,1]
+w2 = [-1,-1,-1,-1]
+z1=[]
+for i in range(0,4):
+    z1.append(x1inputs[i]*w1[i] + x2inputs[i]*w2[i])
+print("x1 " , "x2 " , "z1")
+for i in range(0,4):
+    print(x1inputs[i] ," ", x2inputs[i]," " , z1[i])
+print("Calculating z2 = x1' x2")
+print("Considering one weight as excitatory and other as inhibitory.");
+w1 = [-1,-1,-1,-1]
+w2 = [1,1,1,1]
+z2=[]
+for i in range(0,4):
+    z2.append(x1inputs[i]*w1[i] + x2inputs[i]*w2[i])
+print("x1 " , "x2 " , "z2")
+for i in range(0,4):
+    print(x1inputs[i] ," " , x2inputs[i] ," ", z2[i])
+print("Applying Threshold=1 for z1 and z2")
+for i in range(0,4):
+ if(z1[i]>=1):
+     z1[i]=1
+ else:
+     z1[i]=0
+ if(z2[i]>=1):
+     z2[i]=1
+ else: z2[i]=0
+print("z1 ","z2")
+for i in range(0,4):
+    print(z1[i] ," ", z2[i])
+y = []
+v1=1
+v2=1
+for i in range(0,4):
+    y.append( z1[i]*v1 + z2[i]*v2 )
+print("x1" , "x2" , " y")
+for i in range(0,4):
+    print(x1inputs[i] ," " , x2inputs[i] ," ", y[i])
 
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
